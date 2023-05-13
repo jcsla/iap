@@ -3,12 +3,12 @@ import {
   type ProductPurchase,
   type SubscriptionPurchase,
 } from '@jeremybarbet/google-api-types';
-import { JWT } from 'google-auth-library';
+import {JWT} from 'google-auth-library';
 
-import { type ErrorResponse } from '../types/common';
+import {type ErrorResponse} from '../types/common';
 
-import { type Config, type RequestBody, type VerifyResponse } from './config.interface';
-import { buildEndpoint } from './google.utils';
+import {type Config, type RequestBody, type StatusResponse, type VerifyResponse} from './config.interface';
+import {buildEndpoint} from './google.utils';
 
 const getResource = async <T = SubscriptionPurchase | ProductPurchase>(url: string, client: JWT) => {
   const { data: resource } = await client.request<T>({
@@ -29,7 +29,7 @@ export const verify = async (requestBody: RequestBody, config: Config): Promise<
     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
   });
 
-  const { acknowledge, get } = buildEndpoint(requestBody);
+  const { get, acknowledge } = buildEndpoint(requestBody);
 
   try {
     const response = await client.request<SubscriptionPurchase | ProductPurchase>({
@@ -86,5 +86,25 @@ export const verify = async (requestBody: RequestBody, config: Config): Promise<
       message,
       status,
     };
+  }
+};
+
+export const consume = async (requestBody: RequestBody, config: Config): Promise<StatusResponse> => {
+  const client = new JWT({
+    email: config.clientEmail,
+    key: config.privateKey,
+    scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+  });
+
+  const { consume } = buildEndpoint(requestBody);
+
+  try {
+    const response = await client.request({
+      method: 'POST',
+      url: consume,
+    });
+    return response.status;
+  } catch (error) {
+    return (error as ErrorResponse)?.response?.status ?? 500;
   }
 };

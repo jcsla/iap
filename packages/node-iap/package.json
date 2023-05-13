@@ -1,12 +1,12 @@
 {
-  "name": "@jeremybarbet/node-iap",
-  "version": "1.4.0",
+  "name": "@phillip.leejy/node-iap",
+  "version": "1.0.0",
   "description": "Node.js library for Apple and Google IAP.",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "repository": "git@github.com:jeremybarbet/iap.git",
-  "author": "Jérémy Barbet <jeremgraph@gmail.com>",
+  "repository": "git@github.com:jcsla/iap.git",
+  "author": "phillip <phillip.leejy@gmail.com>",
   "publishConfig": {
     "access": "public"
   },

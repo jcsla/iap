@@ -58,14 +58,6 @@ interface BodyBase {
   token: string;
 }
 
-export type SubscriptionBody = BodyBase &
-  (BodyWithAcknowledge | BodyWithoutAcknowledge) & {
-    /**
-     * The purchased subscription ID (for example, 'monthly001').
-     */
-    subscriptionId: string;
-  };
-
 export type ProductBody = BodyBase &
   (BodyWithAcknowledge | BodyWithoutAcknowledge) & {
     /**
@@ -74,7 +66,7 @@ export type ProductBody = BodyBase &
     productId: string;
   };
 
-export type RequestBody = SubscriptionBody | ProductBody;
+export type RequestBody = ProductBody;
 
 export type DataResponse = SubscriptionPurchase | ProductPurchase | AcknowledgePurchaseOrSubscription;
 

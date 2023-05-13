@@ -20,6 +20,7 @@ import {
   type StatusResponse as GoogleStatusResponse,
   type VerifyResponse as GoogleVerifyResponse,
   verify as verifyGoogleReceipt,
+  consume
 } from './src/google';
 
 export {
@@ -39,4 +40,5 @@ export {
   type GoogleSubscriptionPurchase,
   verifyGoogleReceipt,
   type GoogleVerifyResponse,
+  consume
 };

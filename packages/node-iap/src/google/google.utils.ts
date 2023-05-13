@@ -8,19 +8,9 @@ const replaceInUrl = (url: string, extraReplace: [string, string], { packageName
     .replace('{token}', token);
 
 export const buildEndpoint = (requestBody: RequestBody) => {
-  if ('subscriptionId' in requestBody) {
-    return {
-      acknowledge: replaceInUrl(
-        endpoints.subscriptions.acknowledge,
-        ['{subscriptionId}', requestBody.subscriptionId],
-        requestBody,
-      ),
-      get: replaceInUrl(endpoints.subscriptions.get, ['{subscriptionId}', requestBody.subscriptionId], requestBody),
-    };
-  }
-
   return {
-    acknowledge: replaceInUrl(endpoints.products.acknowledge, ['{productId}', requestBody.productId], requestBody),
     get: replaceInUrl(endpoints.products.get, ['{productId}', requestBody.productId], requestBody),
+    acknowledge: replaceInUrl(endpoints.products.acknowledge, ['{productId}', requestBody.productId], requestBody),
+    consume: replaceInUrl(endpoints.products.consume, ['{productId}', requestBody.productId], requestBody)
   };
 };
