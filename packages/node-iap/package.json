@@ -1,6 +1,6 @@
 {
   "name": "@phillip.leejy/node-iap",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Node.js library for Apple and Google IAP.",
   "license": "MIT",
   "main": "dist/index.js",
