@@ -15,7 +15,7 @@ export const verify = async ({ transactionReceipt }: RequestBody, config: Config
       environment === Environment.PRODUCTION ? endpoints.verifyReceipt.production : endpoints.verifyReceipt.sandbox,
       {
         'receipt-data': transactionReceipt,
-        password,
+        'password': password,
         'exclude-old-transactions': excludeOldTransactions,
       },
     );
