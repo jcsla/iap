@@ -6,7 +6,7 @@ export type ErrorStatus = keyof typeof errors;
 const inRange = (x: number, min: number, max: number) => (x - min) * (x - max) <= 0;
 
 export const handleResponse = (data: ResponseBody) => {
-  if (successes?.[data.status as SuccessStatus]) {
+  if (successes?.[data.status as SuccessStatus] && data.receipt.in_app.length !== 0) {
     return {
       valid: true,
       data,
